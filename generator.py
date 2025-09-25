@@ -5,7 +5,8 @@ import os
 # l'utente sceglie se analitico o olisticio
 # l'ai commenta il file in base al prompt e lo stile
 # crea il file di output
-
+#Prossime modifiche da implementare:
+#-l'ai deve addottare il comportamento che rispecchia il tono dell'utente e generare commenti in base al proprio sentimento.
 
 
 # Modello e chiave da variabile d'ambiente
