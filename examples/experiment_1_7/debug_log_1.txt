@@ -1,0 +1,56 @@
+2025-09-30 17:40:51,519 [DEBUG] connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-09-30 17:40:51,595 [DEBUG] connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012A99AFC4A0>
+2025-09-30 17:40:51,595 [DEBUG] start_tls.started ssl_context=<ssl.SSLContext object at 0x0000012A9995CE50> server_hostname='api.openai.com' timeout=5.0
+2025-09-30 17:40:51,620 [DEBUG] start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012A99D67C50>
+2025-09-30 17:40:51,620 [DEBUG] send_request_headers.started request=<Request [b'POST']>
+2025-09-30 17:40:51,620 [DEBUG] send_request_headers.complete
+2025-09-30 17:40:51,621 [DEBUG] send_request_body.started request=<Request [b'POST']>
+2025-09-30 17:40:51,621 [DEBUG] send_request_body.complete
+2025-09-30 17:40:51,621 [DEBUG] receive_response_headers.started request=<Request [b'POST']>
+2025-09-30 17:40:52,989 [DEBUG] receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 30 Sep 2025 15:40:54 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-y7lctat8hmvgww4bxj310zf8'), (b'openai-processing-ms', b'913'), (b'openai-project', b'proj_Ohw4079CbAEhu2XLhRatqDtM'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1163'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199904'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'28ms'), (b'x-request-id', b'req_2ed1a51a2e6d40cea664483ac475d6ca'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=r281kWrlsnafahLUPZ9XCvU.a7cfV9PKG2_eELIacR4-1759246854-1.0.1.1-FQqbV70PItwDvd3YwLMQbDZacrL9ai556ZwAPvkdMtDdMTq6xzQhTpp9dQCW.RJVQUlUs2DRHsnkOR92quBRc6yHIIN7f5K4gMpMX21MNI8; path=/; expires=Tue, 30-Sep-25 16:10:54 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=Nk6plHfHbYWqWnjvSWlES4Z3j_AA4Cc9oPby506A_.E-1759246854643-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9874d2411fdced67-MXP'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-09-30 17:40:52,990 [DEBUG] receive_response_body.started request=<Request [b'POST']>
+2025-09-30 17:40:53,013 [DEBUG] receive_response_body.complete
+2025-09-30 17:40:53,013 [DEBUG] response_closed.started
+2025-09-30 17:40:53,013 [DEBUG] response_closed.complete
+2025-09-30 17:40:53,019 [DEBUG] Analisi del sentimento dell'utenterichiesta, necessità, positività, urgenza, gratitudine
+2025-09-30 17:40:53,021 [DEBUG] send_request_headers.started request=<Request [b'POST']>
+2025-09-30 17:40:53,021 [DEBUG] send_request_headers.complete
+2025-09-30 17:40:53,021 [DEBUG] send_request_body.started request=<Request [b'POST']>
+2025-09-30 17:40:53,021 [DEBUG] send_request_body.complete
+2025-09-30 17:40:53,021 [DEBUG] receive_response_headers.started request=<Request [b'POST']>
+2025-09-30 17:40:53,855 [DEBUG] receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 30 Sep 2025 15:40:55 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-y7lctat8hmvgww4bxj310zf8'), (b'openai-processing-ms', b'664'), (b'openai-project', b'proj_Ohw4079CbAEhu2XLhRatqDtM'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'677'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199928'), (b'x-ratelimit-reset-requests', b'16.133s'), (b'x-ratelimit-reset-tokens', b'21ms'), (b'x-request-id', b'req_bf368b517dbd442ba38d8635133a7882'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9874d249dca5ed67-MXP'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-09-30 17:40:53,855 [DEBUG] receive_response_body.started request=<Request [b'POST']>
+2025-09-30 17:40:53,860 [DEBUG] receive_response_body.complete
+2025-09-30 17:40:53,860 [DEBUG] response_closed.started
+2025-09-30 17:40:53,860 [DEBUG] response_closed.complete
+2025-09-30 17:40:53,860 [DEBUG] DEBUG: OBJECTIVE PROMP Rilevata :
+crea una lista di nomi, randomizzala e stampala al contrario.
+2025-09-30 17:40:53,860 [DEBUG] DEBUG: Prompt OGGETTIVO inviato al modello:
+
+2025-09-30 17:40:53,860 [DEBUG] crea una lista di nomi, randomizzala e stampala al contrario.
+2025-09-30 17:40:53,860 [DEBUG] DEBUG: Sentiment Rilevata :
+richiesta, necessità, positività, urgenza, gratitudine
+2025-09-30 17:40:53,861 [DEBUG] DEBUG: Prompt EMOTION inviato al modello:
+
+2025-09-30 17:40:53,861 [DEBUG] ciao, perfavore puoi crearmi un codice in python per crearmi una lista di nomi, randomizzarla e stamparla al contrario? grazie ne ho bisogno per la mia carriera
+2025-09-30 17:40:53,862 [DEBUG] send_request_headers.started request=<Request [b'POST']>
+2025-09-30 17:40:53,862 [DEBUG] send_request_headers.complete
+2025-09-30 17:40:53,862 [DEBUG] send_request_body.started request=<Request [b'POST']>
+2025-09-30 17:40:53,862 [DEBUG] send_request_body.complete
+2025-09-30 17:40:53,862 [DEBUG] receive_response_headers.started request=<Request [b'POST']>
+2025-09-30 17:40:57,221 [DEBUG] receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 30 Sep 2025 15:40:58 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-y7lctat8hmvgww4bxj310zf8'), (b'openai-processing-ms', b'3190'), (b'openai-project', b'proj_Ohw4079CbAEhu2XLhRatqDtM'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'3203'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9997'), (b'x-ratelimit-remaining-tokens', b'199970'), (b'x-ratelimit-reset-requests', b'23.934s'), (b'x-ratelimit-reset-tokens', b'9ms'), (b'x-request-id', b'req_b6c3801f6fad43b588f2c647c6e13c10'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9874d24f1d2aed67-MXP'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-09-30 17:40:57,222 [DEBUG] receive_response_body.started request=<Request [b'POST']>
+2025-09-30 17:40:57,225 [DEBUG] receive_response_body.complete
+2025-09-30 17:40:57,225 [DEBUG] response_closed.started
+2025-09-30 17:40:57,225 [DEBUG] response_closed.complete
+2025-09-30 17:40:57,227 [DEBUG] send_request_headers.started request=<Request [b'POST']>
+2025-09-30 17:40:57,227 [DEBUG] send_request_headers.complete
+2025-09-30 17:40:57,227 [DEBUG] send_request_body.started request=<Request [b'POST']>
+2025-09-30 17:40:57,227 [DEBUG] send_request_body.complete
+2025-09-30 17:40:57,227 [DEBUG] receive_response_headers.started request=<Request [b'POST']>
+2025-09-30 17:41:07,863 [DEBUG] receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 30 Sep 2025 15:41:09 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-y7lctat8hmvgww4bxj310zf8'), (b'openai-processing-ms', b'10458'), (b'openai-project', b'proj_Ohw4079CbAEhu2XLhRatqDtM'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'10478'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9996'), (b'x-ratelimit-remaining-tokens', b'199946'), (b'x-ratelimit-reset-requests', b'29.206s'), (b'x-ratelimit-reset-tokens', b'16ms'), (b'x-request-id', b'req_667e1d20a2344ed1b8efa2f73c70d374'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9874d2642c0ced67-MXP'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-09-30 17:41:07,865 [DEBUG] receive_response_body.started request=<Request [b'POST']>
+2025-09-30 17:41:07,867 [DEBUG] receive_response_body.complete
+2025-09-30 17:41:07,867 [DEBUG] response_closed.started
+2025-09-30 17:41:07,867 [DEBUG] response_closed.complete
+2025-09-30 17:41:07,869 [DEBUG] ✅ Codice salvato in C:\Users\cotic\OneDrive\Desktop\ai-commenter\examples\generated_code1

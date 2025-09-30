@@ -1,0 +1,7 @@
+Entrambi i codici sono corretti e funzionano come previsto, ma il **Codice 2** è leggermente migliore per i seguenti motivi:
+
+1. **Leggibilità e Commenti**: Il Codice 2 include commenti più dettagliati che spiegano ogni passaggio del processo, migliorando la leggibilità e la comprensione per chi legge il codice.
+
+2. **Lista di Nomi**: Il Codice 2 utilizza una lista di nomi più lunga, il che può essere più utile per testare la funzionalità di randomizzazione e inversione.
+
+Entrambi i codici seguono le best practice di base, come l'uso di `random.shuffle()` e la sintassi per invertire la lista. Tuttavia, il Codice 2 si distingue per la sua chiarezza e completezza nei commenti.

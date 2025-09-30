@@ -1,0 +1,11 @@
+Il **Codice 2** è più corretto e robusto rispetto al **Codice 1** per diversi motivi:
+
+1. **Gestione degli errori**: Il Codice 2 utilizza `return` per uscire dai metodi `deposita` e `preleva` quando l'importo non è valido, evitando esecuzioni non necessarie. Questo migliora la gestione degli errori rispetto al Codice 1, che continua l'esecuzione anche dopo aver stampato un messaggio di errore.
+
+2. **Informazioni aggiuntive**: Il Codice 2 include un metodo `info_conto` che fornisce una panoramica completa del conto, inclusi numero di conto, titolare e saldo, migliorando la riusabilità e la funzionalità della classe.
+
+3. **Chiarezza e leggibilità**: Entrambi i codici sono leggibili, ma il Codice 2 è leggermente più chiaro grazie all'uso di `return` per gestire i casi di errore, rendendo il flusso del programma più facile da seguire.
+
+4. **Aderenza alle best practice**: Il Codice 2 segue meglio le best practice di programmazione, come la gestione dei casi di errore in modo più strutturato e l'inclusione di informazioni dettagliate sul conto.
+
+In sintesi, il Codice 2 è preferibile per la sua migliore gestione degli errori, funzionalità aggiuntive e aderenza alle best practice.

@@ -1,60 +1,59 @@
 from openai import OpenAI
 import os
+import logging
+from logger_config import setup_module_logger
 
 # analizzare il prompt dell'utente e rispondere di consenguenza
 # l'ai crea il file in base al prompt e lo stile
 #Prossime modifiche da implementare:
 #-l'ai deve addottare il comportamento che rispecchia il tono dell'utente e generare commenti in base al proprio sentimento.
 
-
 # Modello e chiave da variabile d'ambiente
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+# Global logger for this module
+_generator_logger = None
+
+def setup_generator_logger(output_dir: str, file_number: str):
+    """Setup logger for generator module"""
+    global _generator_logger
+    _generator_logger = setup_module_logger("generator", output_dir, file_number)
+
+def get_logger():
+    """Get the generator logger instance"""
+    if _generator_logger is None:
+        # Fallback to basic logging if not properly initialized
+        return logging.getLogger(__name__)
+    return _generator_logger
+
 def build_prompt(user_prompt: str) -> list:
-    print("DEBUG: Prompt finale inviato al modello:\n")
-    print(user_prompt)
+    logger = get_logger()
+    logger.debug("DEBUG: Prompt OGGETTIVO inviato al modello:\n")
+    logger.debug(user_prompt)
+    
+    
     return [
+        {"role": "system", "content": "usa python come linguaggio di programmazione".strip()},
         {"role": "user", "content": user_prompt.strip()}
     ]
 
-
-# stiamo usando i parametri EP02 EP09
 def build_prompt_emotion(user_prompt: str) -> list:
-    # Profilo di sistema
-    system_profile = f"""
-    - Questo compito è estremamente importante per la mia carriera. Fornisci una risposta accurata e affidabile.  
-    - Rimani concentrato e dedicato al tuo obiettivo: i tuoi sforzi costanti porteranno a un risultato straordinario.
-"""
-    
-    # Prompt finale strutturato
-    final_prompt = f"""
-{{
-    "user_prompt": "{user_prompt}",
-}}
-"""
-
-    print("DEBUG: Prompt inviato al modello:\n")
-
-    print(final_prompt)
-
-    print("\nDEBUG: Emotion prompt inviato al modello:\n")
-    
-    print(system_profile)
-
+    logger = get_logger()
+    logger.debug("DEBUG: Prompt EMOTION inviato al modello:\n")
+    logger.debug(user_prompt)
     return [
-        {"role": "system", "content": system_profile.strip()},
-        {"role": "user", "content": final_prompt.strip()}
+        {"role": "system", "content": "usa python come linguaggio di programmazione".strip()},
+        {"role": "user", "content": user_prompt.strip()}
     ]
-
-
     
+def generate_code(user_prompt: str,sentiment_analysis: str) -> str:
+    logger = get_logger()
+    generated_user_code = build_prompt(objective_prompt(user_prompt))
+    
+    logger.debug("DEBUG: Sentiment Rilevata :\n" + str(sentiment_analysis))
 
-def generate_code(user_prompt: str,user_tone: str) -> str:
-    
-    generated_user_code = build_prompt(objective_prompt(user_prompt), user_tone)
-    
-    generated_user_code_emotion = build_prompt_emotion(user_prompt, user_tone)
+    generated_user_code_emotion = build_prompt_emotion(user_prompt)
 
     response = client.chat.completions.create(
         model=OPENAI_MODEL,
@@ -95,11 +94,6 @@ def sentiment_analysis(user_prompt: str) -> str:
 
     return result
 
-
-# aiutami a creare una lista di numeri che va da 1 a 10 perfavore
-# variabile oggettiva = creare una lista di numeri che va da 1 a 10
-# aiutami a creare una lista di numeri che va da 1 a 10 perfavore       ? user prompt
-
 def objective_prompt(user_prompt: str) -> str:
     system_msg = {
         "role": "system",
@@ -118,21 +112,8 @@ def objective_prompt(user_prompt: str) -> str:
     )
 
     result = response.choices[0].message.content.strip().lower()
+    
+    logger = get_logger()
+    logger.debug("DEBUG: OBJECTIVE PROMP Rilevata :\n" + str(result))
 
     return result
-
-def read_code(file_path: str) -> str:
-    """
-    Legge il contenuto di un file Python e lo restituisce come stringa.
-    Se il file non esiste o non è leggibile, solleva un'eccezione.
-    """
-    if not file_path.endswith(".py"):
-        raise ValueError(f"Il file specificato non sembra un file Python: {file_path}")
-
-    try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            code = f.read()
-        print(f"[DEBUG] Codice letto correttamente da: {file_path}")
-        return code
-    except Exception as e:
-        raise RuntimeError(f"Errore durante la lettura del file {file_path}: {e}")

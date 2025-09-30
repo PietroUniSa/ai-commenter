@@ -1,0 +1,9 @@
+Il Codice 2 è migliore rispetto al Codice 1. Ecco i motivi principali:
+
+1. **Leggibilità**: Il Codice 2 include una variabile intermedia `nomi_al_contrario` per memorizzare la lista invertita, migliorando la leggibilità e facilitando la comprensione del flusso del programma.
+
+2. **Chiarezza**: Il Codice 2 fornisce un messaggio esplicativo prima di stampare la lista, rendendo l'output più chiaro per l'utente.
+
+3. **Aderenza alle best practice**: Il Codice 2 segue la convenzione di Python di utilizzare nomi di variabili descrittivi e include un messaggio di stampa che spiega cosa viene visualizzato.
+
+Entrambi i codici sono corretti e funzionano come previsto, ma il Codice 2 è più robusto e leggibile.

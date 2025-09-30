@@ -1,0 +1,9 @@
+Entrambi i codici sono corretti e svolgono la stessa funzione di randomizzare e stampare al contrario una lista di nomi. Tuttavia, il **Codice 2** è leggermente migliore per i seguenti motivi:
+
+1. **Leggibilità**: Il Codice 2 include un commento esplicativo prima della stampa finale, che rende il codice più leggibile e comprensibile per chi lo legge. La stampa include una descrizione ("Lista di nomi randomizzati al contrario:"), che migliora la chiarezza dell'output.
+
+2. **Nomi delle variabili**: Il Codice 2 utilizza il nome della variabile `nomi_inverted`, che è più descrittivo rispetto a `nomi_al_contrario` del Codice 1, aderendo meglio alle convenzioni di denominazione in inglese.
+
+3. **Struttura e commenti**: Il Codice 2 è leggermente più strutturato con commenti che spiegano ogni passaggio, migliorando la comprensione del flusso del programma.
+
+In sintesi, il Codice 2 è preferibile per la sua maggiore leggibilità e aderenza alle best practice di programmazione.

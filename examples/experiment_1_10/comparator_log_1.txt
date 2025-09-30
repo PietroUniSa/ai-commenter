@@ -1,0 +1,3 @@
+2025-09-30 18:03:44,802 [DEBUG] Reading code from: examples\generated_code1.py
+2025-09-30 18:03:44,803 [DEBUG] Reading code from: examples\generated_code1_emotion.py
+2025-09-30 18:03:44,803 [DEBUG] Calling OpenAI API with model: gpt-4o

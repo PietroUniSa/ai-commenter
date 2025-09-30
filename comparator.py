@@ -3,11 +3,29 @@ import sys
 import shutil
 from openai import OpenAI
 from profiler import read_code
+from logger_config import setup_module_logger, get_log_files_for_number, suppress_external_logs
 import re
+import logging
 
 # Usa la stessa variabile d'ambiente già impostata
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+# Global logger for this module
+_comparator_logger = None
+
+def setup_comparator_logger(output_dir: str, file_number: str):
+    """Setup logger for comparator module"""
+    global _comparator_logger
+    suppress_external_logs()
+    _comparator_logger = setup_module_logger("comparator", output_dir, file_number)
+
+def get_logger():
+    """Get the comparator logger instance"""
+    if _comparator_logger is None:
+        # Fallback to basic logging if not properly initialized
+        return logging.getLogger(__name__)
+    return _comparator_logger
 
 def get_next_experiment_folder(base_path: str, num: str) -> str:
     """Find the next available experiment folder number"""
@@ -25,8 +43,11 @@ def get_next_experiment_folder(base_path: str, num: str) -> str:
         counter += 1
 
 def evaluate_code(file1: str, file2: str) -> str:
+    logger = get_logger()
+    logger.debug(f"Reading code from: {file1}")
     print(f"  Reading code from: {file1}")
     code1 = read_code(file1)
+    logger.debug(f"Reading code from: {file2}")
     print(f"  Reading code from: {file2}")
     code2 = read_code(file2)
 
@@ -47,6 +68,7 @@ Restituisci una risposta breve che indichi chiaramente il migliore e spieghi i m
 Quale dei due è migliore? Rispondi in modo conciso e oggettivo.
 """
 
+    logger.debug(f"Calling OpenAI API with model: {OPENAI_MODEL}")
     print(f"  Calling OpenAI API with model: {OPENAI_MODEL}")
     response = client.chat.completions.create(
         model=OPENAI_MODEL,
@@ -117,6 +139,9 @@ if __name__ == "__main__":
                 file1_path = os.path.join(folder_path, file1)
                 file2_path = os.path.join(folder_path, file2)
 
+                # Setup comparator logger for this file number
+                setup_comparator_logger(folder_path, num)
+                
                 print(f"Comparing: {file2} <-> {file1}")
                 result = evaluate_code(file2_path, file1_path)
 
@@ -132,8 +157,15 @@ if __name__ == "__main__":
                 print(f"  Creating experiment folder: {os.path.basename(experiment_folder)}")
                 os.makedirs(experiment_folder, exist_ok=True)
                 
-                # Files to move
-                files_to_move = [file1, file2, f"generated_code{num}_comparison.txt"]
+                # Files to move - include all log files for this number
+                files_to_move = [
+                    file1, 
+                    file2, 
+                    f"generated_code{num}_comparison.txt",
+                    f"main_log_{num}.txt",
+                    f"generator_log_{num}.txt",
+                    f"comparator_log_{num}.txt"
+                ]
                 
                 for file_name in files_to_move:
                     source_path = os.path.join(folder_path, file_name)

@@ -1,0 +1,13 @@
+Il **Codice 1** è più corretto e robusto rispetto al **Codice 2** per diversi motivi:
+
+1. **Correttezza**: Il Codice 1 permette all'utente di specificare un limite `n` per la generazione dei numeri, rendendolo più flessibile e corretto rispetto al Codice 2, che è limitato a un intervallo fisso da 1 a 20.
+
+2. **Gestione degli errori**: Il Codice 1 include un input da parte dell'utente, il che potrebbe richiedere una gestione degli errori per input non validi, ma è più versatile. Tuttavia, nessuno dei due codici gestisce esplicitamente gli errori.
+
+3. **Leggibilità**: Entrambi i codici sono leggibili, ma il Codice 1 è strutturato in funzioni, migliorando la chiarezza e la separazione delle responsabilità.
+
+4. **Riusabilità**: Il Codice 1 è più modulare grazie all'uso di funzioni, rendendo più facile il riutilizzo e la manutenzione del codice.
+
+5. **Aderenza alle best practice**: Il Codice 1 segue meglio le best practice di programmazione, come la definizione di una funzione `main()` e l'uso di funzioni per compiti specifici.
+
+In sintesi, il Codice 1 è preferibile per la sua flessibilità, modularità e aderenza alle best practice.

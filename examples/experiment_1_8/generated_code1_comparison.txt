@@ -1,0 +1,9 @@
+Entrambi i codici sono corretti e funzionano come previsto, ma il **Codice 2** è leggermente migliore per i seguenti motivi:
+
+1. **Leggibilità**: Il Codice 2 assegna la lista invertita a una variabile `nomi_al_contrario` prima di stamparla, migliorando la leggibilità e la comprensione del codice.
+
+2. **Riusabilità**: Utilizzando una variabile per la lista invertita, il Codice 2 facilita la riusabilità del risultato in altre parti del programma, se necessario.
+
+3. **Aderenza alle best practice**: Il Codice 2 include un commento esplicativo per ogni passaggio, migliorando la documentazione e la comprensione del flusso del programma.
+
+In sintesi, il Codice 2 è più leggibile e aderente alle best practice di programmazione.

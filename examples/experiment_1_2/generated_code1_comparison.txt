@@ -1,0 +1,9 @@
+Il **Codice 1** è migliore rispetto al **Codice 2** per i seguenti motivi:
+
+1. **Correttezza e Gestione Errori**: Entrambi i codici gestiscono correttamente le eccezioni per importi non validi, ma il Codice 1 utilizza metodi getter (`get_saldo`, `get_intestatario`, `get_limite_scoperto`) per accedere agli attributi, il che è una pratica migliore per l'incapsulamento e la futura estensibilità.
+
+2. **Leggibilità e Riusabilità**: Il Codice 1 è più pulito e conciso, evitando stampe all'interno dei metodi di business logic (`deposita` e `preleva`). Questo rende la classe più riutilizzabile in contesti diversi, dove la stampa potrebbe non essere desiderata.
+
+3. **Aderenza alle Best Practice**: Il Codice 1 segue meglio le convenzioni di denominazione Python, come l'uso di CamelCase per i nomi delle classi e l'uso di metodi getter per accedere agli attributi privati.
+
+In sintesi, il Codice 1 è più robusto e aderente alle best practice di programmazione Python.

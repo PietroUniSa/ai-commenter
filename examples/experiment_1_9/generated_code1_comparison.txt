@@ -1,0 +1,9 @@
+Il **Codice 2** è migliore rispetto al **Codice 1** per i seguenti motivi:
+
+1. **Leggibilità**: Il Codice 2 utilizza un ciclo `for` per stampare ogni nome su una nuova riga, migliorando la leggibilità dell'output rispetto al Codice 1, che stampa l'intera lista su una singola riga.
+
+2. **Esplicatività**: Il Codice 2 include un commento esplicativo e un messaggio di stampa che chiarisce l'operazione eseguita ("Nomi randomizzati al contrario"), rendendo il codice più comprensibile.
+
+3. **Riusabilità**: Il Codice 2 separa la logica di inversione della lista in una variabile (`nomi_al_contrario`), facilitando eventuali riutilizzi o modifiche future.
+
+Entrambi i codici sono corretti e aderiscono alle best practice di base, ma il Codice 2 offre una migliore esperienza utente e una struttura più chiara.
