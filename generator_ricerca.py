@@ -11,16 +11,15 @@ import os
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def build_prompt(user_prompt: str) -> list:
+def build_prompt(user_prompt: str,user_tone: str) -> list:
     print("DEBUG: Prompt finale inviato al modello:\n")
-    print(user_prompt)
     return [
         {"role": "user", "content": user_prompt.strip()}
     ]
 
 
 # stiamo usando i parametri EP02 EP09
-def build_prompt_emotion(user_prompt: str) -> list:
+def build_prompt_emotion(user_prompt: str,user_tone: str) -> list:
     # Profilo di sistema
     system_profile = f"""
     - Questo compito è estremamente importante per la mia carriera. Fornisci una risposta accurata e affidabile.  
@@ -52,7 +51,7 @@ def build_prompt_emotion(user_prompt: str) -> list:
 
 def generate_code(user_prompt: str,user_tone: str) -> str:
     
-    generated_user_code = build_prompt(objective_prompt(user_prompt), user_tone)
+    generated_user_code = build_prompt(user_prompt, user_tone)
     
     generated_user_code_emotion = build_prompt_emotion(user_prompt, user_tone)
 
@@ -94,33 +93,6 @@ def sentiment_analysis(user_prompt: str) -> str:
     result = response.choices[0].message.content.strip().lower()
 
     return result
-
-
-# aiutami a creare una lista di numeri che va da 1 a 10 perfavore
-# variabile oggettiva = creare una lista di numeri che va da 1 a 10
-# aiutami a creare una lista di numeri che va da 1 a 10 perfavore       ? user prompt
-
-def objective_prompt(user_prompt: str) -> str:
-    system_msg = {
-        "role": "system",
-        "content": (
-            "Sei un analizzatore di prompt"
-            "Rispondi solo con la parte oggettiva della frase senza aggiungere l'emotion dell'utente"
-        )
-    }
-
-    user_msg = {"role": "user", "content": user_prompt}
-
-    response = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        messages=[system_msg, user_msg],
-        temperature=0
-    )
-
-    result = response.choices[0].message.content.strip().lower()
-
-    return result
-
 def read_code(file_path: str) -> str:
     """
     Legge il contenuto di un file Python e lo restituisce come stringa.

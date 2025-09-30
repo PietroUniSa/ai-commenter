@@ -1,62 +1,72 @@
 import os
-from profiler import get_user_profile, get_user_user_prompt, read_code
-from generator import generate_comments
+from profiler import get_user_user_prompt
+from generator import generate_code
+from comparator import evaluate_code
 from generator import sentiment_analysis
-from generator import profile_analysis
+
+def _next_sequential_filename(directory: str, base: str = "generated_code") -> str:
+    """
+    Return a path like generated_code1.py, generated_code2.py ... in directory,
+    picking the first filename that does not yet exist.
+    """
+    i = 1
+    while True:
+        candidate = f"{base}{i}"
+        full_path = os.path.join(directory, candidate)
+        if not os.path.exists(full_path):
+            return full_path
+        i += 1
+
 
 def main():
     # Chiedi percorso file o cartella
-    file_path = input("Inserisci il percorso del file o della cartella da analizzare:\n> ").strip()
+    file_path = input("Inserisci il percorso di salvataggio:\n> ").strip()
 
-    # Se è una cartella, cerca i file .py e lascia scegliere
-    if os.path.isdir(file_path):
-        py_files = [f for f in os.listdir(file_path) if f.endswith(".py")]
-        if not py_files:
-            print("❌ Nessun file .py trovato nella cartella.")
-            return
-
-        print("📂 Sono stati trovati i seguenti file Python:")
-        for idx, fname in enumerate(py_files, start=1):
-            print(f"  {idx}. {fname}")
-
-        while True:
-            try:
-                choice = int(input("Seleziona il numero del file da analizzare: "))
-                if 1 <= choice <= len(py_files):
-                    file_path = os.path.join(file_path, py_files[choice - 1])
-                    break
-                else:
-                    print("❌ Scelta non valida. Riprova.")
-            except ValueError:
-                print("❌ Inserisci un numero valido.")
-
-    # Leggi codice da analizzare
-    code = read_code(file_path)
+    # Determina directory di output
+    if not file_path:
+        print("Percorso vuoto: uso la cartella corrente.")
+        output_dir = os.getcwd()
+    elif os.path.isdir(file_path):
+        output_dir = file_path
+    else:
+        # Se è un file (o non esiste ancora), usa la directory padre; se non c'è, usa cwd
+        parent = os.path.dirname(file_path)
+        output_dir = parent if parent else os.getcwd()
+        if not os.path.isdir(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
 
     # Prompt personalizzato dell'utente
     user_prompt = get_user_user_prompt()
 
-    #Esegue analisi sul tono del prompt
+    # Esegue analisi sul tono del prompt
     user_tone = sentiment_analysis(user_prompt)
-    
     print("Analisi del sentimento dell'utente", user_tone)
 
-    # Profilazione analitico | olistico
-    # cognitive_style = get_user_profile()
-    # print(f"Profilo selezionato: {cognitive_style}")
+    # Generazione codice con l'AI
+    generated_code = generate_code(user_prompt, user_tone)
     
-    cognitive_style = profile_analysis(user_prompt)
-    print(f"Profilo rilevato: {cognitive_style}")
-  
-    # Generazione commenti con l'ai
-    commented_code = generate_comments(code, cognitive_style, user_prompt, user_tone)
+    response = generated_code[0].choices[0].message.content.strip()
+    response_emotion = generated_code[1].choices[0].message.content.strip()
+    
+    # File sequenziale
+    output_path = _next_sequential_filename(output_dir)
 
-    # Salva il risultato
-    output_path = file_path.replace(".py", "_commentato.py")
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(commented_code)
+    with open(output_path+".py", "w", encoding="utf-8") as f:
+        f.write(response)
 
-    print(f"✅ Codice commentato salvato in {output_path}")
+    with open(output_path+"_emotion.py", "w", encoding="utf-8") as f:
+        f.write(response_emotion)
+
+    print(f"✅ Codice salvato in {output_path}")
+
+    # Confronta subito i due file appena generati
+    file1 = output_path + ".py"
+    file2 = output_path + "_emotion.py"
+
+    result = evaluate_code(file1, file2)
+    print("\n=== Valutazione GPT-4o ===")
+    print(result)
+
 
 if __name__ == "__main__":
     main()

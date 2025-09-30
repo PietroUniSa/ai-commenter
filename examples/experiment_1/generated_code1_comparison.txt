@@ -1,0 +1,13 @@
+Il **Codice 2** è migliore rispetto al **Codice 1** per diversi motivi:
+
+1. **Correttezza e Robustezza**: Il Codice 2 include controlli aggiuntivi nel costruttore per garantire che il saldo iniziale non sia negativo e che il limite di scoperto sia non positivo, prevenendo configurazioni di conto non valide.
+
+2. **Gestione degli Errori**: Entrambi i codici gestiscono le eccezioni per importi non validi, ma il Codice 2 fornisce messaggi di errore più chiari e specifici.
+
+3. **Leggibilità e Best Practices**: Il Codice 2 utilizza annotazioni di tipo per i parametri e i valori di ritorno, migliorando la leggibilità e l'aderenza alle best practice di Python.
+
+4. **Riusabilità**: Il Codice 2 include un metodo `__str__` per una rappresentazione stringa dell'oggetto, rendendo più semplice la visualizzazione dello stato del conto in modo leggibile.
+
+5. **Precisione**: Il Codice 2 formatta il saldo con due cifre decimali, migliorando la precisione nella rappresentazione dei valori monetari.
+
+Questi aspetti rendono il Codice 2 più corretto e robusto dal punto di vista della programmazione.
