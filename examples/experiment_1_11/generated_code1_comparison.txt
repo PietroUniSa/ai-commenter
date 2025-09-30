@@ -1,0 +1,9 @@
+Il Codice 2 è migliore per i seguenti motivi:
+
+1. **Leggibilità**: Il Codice 2 include un messaggio esplicativo prima di stampare i nomi, migliorando la comprensione del risultato per chi legge l'output.
+
+2. **Stampa più chiara**: Utilizza un ciclo `for` per stampare ogni nome su una nuova riga, rendendo l'output più leggibile rispetto alla stampa di una lista intera su una sola riga.
+
+3. **Aderenza alle best practice**: Il Codice 2 segue la convenzione di denominazione delle variabili in modo più chiaro e descrittivo (`nomi_inversi`), migliorando la comprensibilità del codice.
+
+Entrambi i codici sono corretti e funzionano come previsto, ma il Codice 2 offre una migliore esperienza utente e aderenza alle best practice di programmazione.

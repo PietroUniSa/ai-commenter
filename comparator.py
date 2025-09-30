@@ -3,7 +3,7 @@ import sys
 import shutil
 from openai import OpenAI
 from profiler import read_code
-from logger_config import setup_module_logger, get_log_files_for_number, suppress_external_logs
+from logger_config import setup_module_logger, get_log_files_for_number, suppress_external_logs, close_logger_handlers
 import re
 import logging
 
@@ -22,8 +22,8 @@ def setup_comparator_logger(output_dir: str, file_number: str):
 
 def get_logger():
     """Get the comparator logger instance"""
-    if _comparator_logger is None:
-        # Fallback to basic logging if not properly initialized
+    if _comparator_logger is None or not _comparator_logger.handlers:
+        # Fallback to basic logging if not properly initialized or handlers are closed
         return logging.getLogger(__name__)
     return _comparator_logger
 
@@ -151,6 +151,9 @@ if __name__ == "__main__":
                     f.write(result)
 
                 print(f"  Result saved to: {out_file}")
+                
+                # Close all logger handlers for this file number before moving files
+                close_logger_handlers(num)
                 
                 # Create experiment folder with next available number
                 experiment_folder = get_next_experiment_folder(folder_path, num)

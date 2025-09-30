@@ -22,8 +22,8 @@ def setup_generator_logger(output_dir: str, file_number: str):
 
 def get_logger():
     """Get the generator logger instance"""
-    if _generator_logger is None:
-        # Fallback to basic logging if not properly initialized
+    if _generator_logger is None or not _generator_logger.handlers:
+        # Fallback to basic logging if not properly initialized or handlers are closed
         return logging.getLogger(__name__)
     return _generator_logger
 

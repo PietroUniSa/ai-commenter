@@ -64,6 +64,28 @@ def get_log_files_for_number(file_number: str) -> list:
     """
     return [path for key, path in _log_files.items() if key.endswith(f"_{file_number}")]
 
+def close_logger_handlers(file_number: str):
+    """
+    Close all file handlers for loggers with the specified file number.
+    This is necessary before moving log files to avoid permission errors.
+    
+    Args:
+        file_number: The file number to close handlers for
+    """
+    loggers_to_close = [key for key in _loggers.keys() if key.endswith(f"_{file_number}")]
+    
+    for logger_key in loggers_to_close:
+        logger = _loggers[logger_key]
+        # Close all handlers
+        for handler in logger.handlers[:]:
+            handler.close()
+            logger.removeHandler(handler)
+        
+        # Remove from global storage
+        del _loggers[logger_key]
+        if logger_key in _log_files:
+            del _log_files[logger_key]
+
 def suppress_external_logs():
     """Suppress logs from external libraries (OpenAI, HTTP, etc.)"""
     external_loggers = [

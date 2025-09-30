@@ -1,7 +1,7 @@
 import os
 from profiler import get_user_user_prompt
 from generator import generate_code, sentiment_analysis, setup_generator_logger
-from logger_config import setup_module_logger, suppress_external_logs
+from logger_config import setup_module_logger, suppress_external_logs, close_logger_handlers
 import logging
 import subprocess
 import sys
@@ -72,6 +72,9 @@ def main():
     main_logger.debug(f"✅ Codice salvato in {output_path}")
     print(f"✅ Files created: {os.path.basename(output_path)}.py, {os.path.basename(output_path)}_emotion.py")
     print(f"📝 Log files: main_log_{file_number}.txt, generator_log_{file_number}.txt")
+    
+    # Close logger handlers to release file locks
+    close_logger_handlers(file_number)
 
 
 
